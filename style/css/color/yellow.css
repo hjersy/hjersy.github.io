@@ -1,0 +1,109 @@
+a {
+    color: #EDC227;
+}
+a.button,
+.forms fieldset .btn-submit,
+.filter li a {
+    background-color: #EDC227;
+}
+a.resume-btn{
+    border-color: #EDC227;
+}
+ul li:before {
+    color: #EDC227;
+}
+.lite1 {
+    color: #EDC227;
+    border-bottom: 1px dotted #EDC227;
+}
+.menu ul li.active a,
+.menu ul li.current a,
+.menu ul li a:hover,
+.menu ul li a.selected {
+    color: #EDC227
+}
+.menu ul li ul:before {
+    border-bottom: 5px solid #EDC227;
+}
+.menu ul li ul li:first-child {
+    border-top: 2px solid #EDC227
+}
+.menu ul li ul li a:hover {
+    background-color: #EDC227;
+}
+.box-wrapper .box:hover i.special {
+    color: #EDC227;
+}
+.box-wrapper .box:hover p,
+.box-wrapper .box:hover h3 {
+    color: #EDC227;
+}
+footer a:hover {
+    color: #EDC227
+}
+.black-wrapper a:hover {
+	color: #EDC227
+}
+.contact-details i.contact {
+    color: #EDC227;
+}
+.tab a.active,
+.tab a:hover {
+    color: #EDC227
+}
+#testimonials .author {
+    color: #EDC227;
+}
+#testimonials .tab a.active,
+#testimonials .tab a:hover {
+    background: #EDC227;
+}
+.toggle h4.title:hover,
+.toggle h4.title.active {
+    color: #EDC227
+}
+.tp-caption .colored {
+    color: #EDC227
+}
+.tp-bullets.simplebullets.round .bullet.selected,
+.tp-bullets.simplebullets.round .bullet:hover {
+    background-color: #EDC227
+}
+.tparrows:hover {
+    background-color: #EDC227;
+}
+.touchcarousel .touchcarousel-item .link:hover {
+    background-color: #EDC227;
+}
+.touchcarousel .touchcarousel-item .caption a:hover {
+	color: #EDC227;
+}
+.touch-carousel .scrollbar {
+    background-color: #EDC227 !important;
+}
+.fancybox-close:hover,
+.fancybox-prev span:hover,
+.fancybox-next span:hover {
+    background: #EDC227 !important;
+}
+.meter > span {
+    background-color: #EDC227;
+}
+.pricing .plan h4 span {
+    color: #EDC227;
+}
+.portfolio-detail-view .closebutton:hover,
+.portfolio-detail-view-remove .closebutton:hover {
+    background: #EDC227;
+}
+.carousel .item .link:hover,
+.portfolio-detail-view .single .link:hover {
+    background-color: #EDC227;
+}
+.carousel-control:hover {
+    background-color: #EDC227;
+}
+.items li a .overlay,
+.overlay a .more {
+    background-color: rgba(237,194,39, 0.92);
+}

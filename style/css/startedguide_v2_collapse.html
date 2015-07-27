@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,400,300,600,700' rel='stylesheet' type='text/css'>  
+
+    <title>Started Guide</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-lightbox.css" rel="stylesheet">
+    <link href="css/bootstrap-lightbox.min.css" rel="stylesheet"> 
+    <!-- Custom styles for this template -->
+    <link href="style.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy this line! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <div class="logo"><a href="index.html"><img src="img/flydata.png" alt="" /></a></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+      <div class="container">
+          <h1>Getting Started Guide for Amazon Redshift Free Trial</h1>
+        <p>To take advantage of the free trial with FlyData for Amazon Redshift, you first need to register with Amazon Redshift. Do this while they're offering as well a free trial account. Be sure to take note of your login and other information on Amazon Redshift. You'll need that for when you register and configure FlyData.</p>
+        <p>Once you've done that, launch an instance of Amazon Redshift on your system to begin the process of setting up a system with FlyData.</p>
+      </div>
+    </div>
+
+    <div class="container">
+      <!-- Example row of columns -->
+        
+    <!--STEP 1-->
+        <div class="section">
+
+            <div class="section-header"><h3>Create FlyData account</h3></div>
+            
+            <p>Next you will need to establish an account with FlyData. This is always free to create. You won't be asked for a credit card or other such information to open the account. You will be asked to provide an email address and a password.</p>
+            <p>From your web browser, go to <a href="http://secure.flydata.co">secure.flydata.co</a>When you do, you should see a page with a box such as the one below:</p>
+            <div class="r_screenshot">
+                <img src="r_img/flydata-create-account.jpg"  width="100%" class="img-responsive" alt="Responsive image">
+            </div>
+
+            <p>Enter an email address that you want to use for your FlyData account, and a password, as well as agree to the terms of use related to the account. When you're finished, you should receive an email confirming the account has been created.</p>
+        </div>
+    <!--STEP 2-->
+        <div class="section">
+            <div class="section-header"><h3>Authorize FlyData on Amazon Redshift</h3></div>
+            <p>Now that you have both an Amazon Redshift account and a FlyData account, you will need to provide information to FlyData regarding your Amazon Redshift account for the two systems to be able to interact. This will require you also to change the security settings on Amazon Redshift to authorize FlyData. This is particularly necessary for FlyData to be able to upload data to your Amazon Redshift cluster.</p>
+            <P>The following IP addresses belong to FlyData and will be used to connect to your cluster:</P>
+            <p><code>54.235.208.92</code></p>
+            <p><code>54.235.208.103</code></p>
+            <p>You will have to provide these IP addresses so that FlyData's servers can access to your cluster's endpoint. How this is set, though, depends on whether you're using Amazon's Virtual Private Cloud. You can accomplish this by doing one of the following, whichever one applies to your situation.</p>
+            <div class="sub-section">
+                <div class="panel-group" id="accordion">
+                    <div class="panel panel-default">
+                        <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                            <h4 class="panel-title"> Virtual Private Cloud (VPC) </h4>
+                        </div>
+                        <div id="collapseOne" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <p>If you are using Amazon's Virtual Private Cloud, you will need first to identify the security group to which you would like to add the FlyData IP addresses. On your Amazon Redshift Cluster AWS Console, select the <em>VPC Dashboard</em>, then the link labeled <em>VPC Security Groups</em>. When there, search for the security group by entering its group ID in the search box (e.g., sg-8cde8f18). When you locate it, click on the box to the left of it to highlight. That will show you the details for that security group, as shown in the screenshot below:</p>
+                                <div class="r_screenshot">
+                                    <img src="r_img/settings-vpc.png"  width="100%" class="img-responsive" alt="Responsive image">
+                                </div>
+                                <p>Next you will need to authorize the FlyData IP addresses. Click on the <em>Inbound Rules</em> tab in the middle of the page for the selected security group, and then the <em>Edit</em> button. A dialog box will open: click on <em>Edit Inbound Rules</em> in that box and then on <em>Add Rule</em> to add the first IP address, and again to add another when done with the first. Set the parameters for these two rules as follows:</p>
+
+                                <ul>
+                                    <li>Type: Custom TCP Rule</li>
+                                    <li>Port Range: <em>port</em></li>
+                                    <li>Source: <code>54.235.209.92/32</code>, <code>54.235.208.103/32</code></li>
+
+                                </ul>
+                                <p>The type is the same for both rules. For the port range, you would use your Amazon Redshift Cluster (e.g., 5439). For the source enter the first IP address for the first rule and the second address for the second rule. When you're finished, click <em>Save</em>.</p>
+                                <p>That's all you need to do at this stage to authorize FlyData access to your cluster. Skip to the section below called, <em>Register Cluster with FlyData</em>.</p>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                            <h4 class="panel-title">Without Virtual Private Cloud</h4>
+                        </div>
+                        <div id="collapseTwo" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <p>If you're not using Amazon's Virtual Private Cloud, you will still need to register FlyData's IP addresses with Amazon Redshift. To do this, go to your Amazon Redshift Cluster AWS Console page, and click on the <em>Security Groups</em> table. Then select the security group specified as the <em>Cluster Security Groups</em>. At this point you will be able to enter the needed parameters (see screenshot below).</p>
+                                <div class="r_screenshot">
+                                    <img src="r_img/settings-non-vpc.png"  width="100%" class="img-responsive" alt="Responsive image">
+                                </div>
+
+                                <p>Set the parameters for the two IP addresses as follows, clicking Authorize after adding the first IP address, and again to add the second:</p>
+                                    <ul>
+                                        <li>Connection Type: <code>CIDR/IP</code></li>
+                                        <li>CIDR/IP to Authorize: <code>54.235.208.92/32</code>, <code>54.235.208.103/32</code></li>
+                                    </ul>
+                                <p>That's all you need to do at this stage to grant FlyData access to your Amazon Redshift cluster.</p>
+
+                          </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section">
+            <div class="section-header"><h3>Register Cluster with FlyData</h3></div>    
+            
+            <p>In the previous section, you were asked to enter the information about FlyData's servers in your security setttings with Amazon Redshift. This way FlyData is authorized to interact with your cluster. Now you need to enter information about your Amazon Redshift cluster connection on the settings page with Flydata.</p>
+            <p>Select the name of your cluster on FlyData from your list of clusters. Then click on the <em>Configuration</em> table to configure it. A box will appear, like the one in the screenshot bellow, for you to be able enter your Amazon Redshift Cluster settings.</p>
+
+            <div class="screenshot">
+                <img src="img/3_2.png"  width="100%" class="img-responsive" alt="Responsive image">
+            </div>
+            <p>You will need to provide the endpoint and other parameters:</p>
+            <ul>
+                <li>Endpoint: <em>endpoint</em> </li>
+                <li>Port: <em>port</em></li>
+                <li>Database Name: <em>database</em></li>
+                <li>Username: <em>user</em></li>
+                <li>Password: <em>password</em></li>
+            </ul>
+            <p>You will need to use your endpoint and port. For example, the endpoint might be set to something like, myredshift.cywlg1ayhkjv.us-east-1.redshift.amazonaws.com, with the port set to 5439. For the database name, you'll have to enter the name of the database that you want replicated on your Amazon Redshift cluster. You'll also have to provide the MySQL user name and password for accessing the database.</p>
+        </div>
+
+        
+    <!--STEP 3-->
+    <div class="section">
+        <div class="section-header"><h3>Initialize Replication</h3></div>
+        The point of FlyData Synch in particular, is to replicate selected databases and tables on Amazon Redshift. To do this, you will need to initialize replication on your cluster. You will also need to make sure the binary logs are enabled on your MySQL server. Let's do that first.
+        <div class="sub-section">
+            <div class="sub-section-header"><h4>Create a Read Replica</h4></div>
+            <p>Next you need you will need to create a read replica. Do this in your Amazon RDS Dashboard. Select <em>Instance Actions</em> and then <em>Create Read Replica</em>. Next click on <em>Parameter Groups</em> and then <em>Create DB Parameter Group</em>, as shown in the screenshot below:</p>
+            <div class="r_screenshot">
+                <img src="r_img/CreateParameterGroup.png"  width="100%" class="img-responsive" alt="Responsive image">
+            </div>
+            <p>A dialog box will appear asking you to set parameters for the group.</p>
+            <div class="r_screenshot">
+                <img src="r_img/ParameterGroupCreation.png"  width="100%" class="img-responsive" alt="Responsive image">
+            </div>
+            <p>Set these parameters as follows:</p>
+            <ul>
+                <li>DB Parameter Group Family: <code>mysql5.6</code></li>
+                <li>DB Parameter Group Name: <code>mysql56sync</code></li>
+                <li>DB Parameter Group Description: <code>MySQL5.6 for Sync</code></li>
+            </ul>
+            <p>When you're finished, click on <em>Yes, Create</em>. Then select the icon next to the newly created parameter group, <code>mysql56sync</code>. Click on <em>Edit Parameters</em>. You should then see a box like the one shown below:</p>
+            <div class="r_screenshot">
+                <img src="r_img/EditParameters.png"  width="100%" class="img-responsive" alt="Responsive image">
+            </div>
+
+            <p>You will need to set just a few of the parameters, the ones that follow:</p>
+
+            <ul>
+                <li>binlog_format: <code>ROW</code></li>
+                <li>binlog_checksum: <code>NONE</code></li>
+                <li>log_bin_use_v1_row_events: <code>1</code></li>
+                <li>read_only: <code>0</code></li>
+            </ul>
+            <p>When you're finished, click <em>Save Changes</em> to save your changes.</p>
+            <p>Now you will need to configure the read replica. To do this, click on <em>Instance Actions</em> and then <em>Modify</em>, as shown in the screenshot below:</p>
+            <div class="r_screenshot">
+                <img src="r_img/InstanceActions.png"  width="100%" class="img-responsive" alt="Responsive image">
+            </div>
+            <p>When you do so, you will see a dialog box like the one in the screenshot below:</p>
+            <div class="r_screenshot">
+                <img src="r_img/ModifyDBInstance.png"  width="100%" class="img-responsive" alt="Responsive image">
+            </div>
+            <p>For most of the values, the default may be used or they may be left black. However, you will need to set a few of the values as follows:</p>
+
+            <ul class="task-list">
+                 <li>DB Engine Version: <code>MySQL 5.6.xx</code>(default)</li>
+                 <li>New Master Password: <em>password</em></li>
+                 <li>Parameter Group:   <code>mysql56sync</code></li>
+            </ul>
+
+            <p>You need to enter a password for the <em>New Master Password</em> so as to reset the default parameters. Use may use the same password as you used previously for the master password. You don't have to change it, but it needs it again, although it says <em>New</em>. For the <em>DB Parameter Group</em>, enter the name of the one you just created.</p>
+            <p>When you're finished entering these parameters, Select <em>Apply Immediately</em> and click on <em>Continue</em>. When asked for confirmation, click on the button labeled, <em>Modify DB Instance</em> (see screenshot below).</p>
+            <div class="r_screenshot">
+                <img src="r_img/ModifyDBInstanceConfirm.png"  width="100%" class="img-responsive" alt="Responsive image">
+            </div>
+            <p>You will need to wait for the instance to become available before proceeding. When it does, select <em>Instance Actions</em> and then Modify. Set the number of days for the <em>Background Retention Period</em> to <code>7</code> and set <em>Apply Immediately</em> to <em>Yes</em>.</p>
+            <p>Now that you've modified the instance, wait until it becomes available again before proceeding.</p>
+        </div> 
+        <div class="sub-section">
+            <div class="sub-section-header">
+                <h4>Create a User for Read Replica</h4>
+            </div>    
+            <p>Having created a new read replica, you will now need to create a user for it on your MySQL server. Log into the read replica database from a mysql client with the master account. Then create a user to be used only by FlyData Sync. You can do this in MySQL like so:</p>
+
+<pre class="mysql"><code>mysql> CREATE USER 'sync'@'%' IDENTIFIED BY 'your_password';</code>
+<code>mysql> GRANT REPLICATION SLAVE, SELECT, RELOAD, REPLICATION CLIENT, LOCK TABLES ON *.* TO 'sync'@'%';</code>  
+<code>mysql> FLUSH PRIVILEGES;</code></pre>
+            <p>For the <em>password</em>, enter the password you want to use for this new user.</p>
+        </div>
+        <div class="sub-section">
+            <div class="sub-section-header">
+                <h4>Retain binary log for 24 hours</h4>
+            </div>
+             <p>To ensure proper replication, it's a good idea to retain binary logs for at least twenty-four hours. To do this, you can enter the following in mysql from your server:</p>  
+                        <pre><code>mysql> call mysql.rds_set_configuration('binlog retention hours', 24);</code></pre>
+            </div>
+        <div class="sub-section">
+            <div class="sub-section-header">
+                <h4>Register the Read Replica</h4>
+            </div>
+            <p>Enter the connection information related to the read replica in data entry page on the FlyData Dashboard. Be sure to include the name of a database and tables to synchronize.</p>
+        </div>
+    </div>
+    <!--STEP 4-->
+    <div class="section">
+        <div class="section-header">
+                <h3>Setup FlyData Client</h3>
+            </div>    
+        <P>Now that you have your account configured properly at FlyData and at Amazon, you need to install some software on your server so that FlyData can communicate with it to transfer data to Amazon for you. This requires installing FlyData's client.</P>
+        <p>The FlyData client gets changes to MySQL for the databases and tables you want to replicate from the MySQL binary log (i.e., binlog). It sends any changes to the Flydata Cloud, which then sends those changes to Amazon Redshift. You run the client on a Linux server which has access to your MySQL server. If you don't have a server already, you can launch a new EC2 instance in your AWS account with the following steps. If you already have a server on which you can install FlyData client, you may skip to the next section.</p>
+        <div class="sub-section">
+            <div class="sub-section-header">
+                <h4>Launch an Instance for Client</h4>
+            </div>
+            <p>You will need a encryption key pair to log into the EC2 instance. You may use an existing one for the server or you could create a new key pair. Once you have one, though, you will need to know where it's located on your server.</p>
+            <p>Once you have your encryption key ready, launch an EC2 instance that the FlyData client will use. To do this, follow these steps:</p>
+            <ul>
+                <li>From the AWS Console, select EC2.</li>
+                <li>Click on <em>Launch Instance</em> and then click on <em>Select</em> to choose Amazon Linux AMI.</li>
+                <li>Now choose the <em>Instance</em> Type of <code>m1.small</code>.</li>
+                <li>To finish, click on <em>Review and Launch</em> and then <em>Launch</em>.</li>
+            </ul>
+            <p>You may have to wait a bit for the instance to be available. Once it is available, log into the instance by entering the following from the command-line:</p>
+            <pre class="terminal"><code>$ ssh -i your_public_key ec2-user@your-instance-public-DNS</code></pre>
+            <p>You would replace <em>public_key</em> with the path and file name for your public key. It might read something like, <code>~/.ssh/id_rsa.pub</code>. The <em>instance-public-DNS</em> would be the specific internet address for your instance. It would look something like, <code>ec2-23-20-136-106.compute-1.amazonaws.com</code>.</p>
+        </div>
+        <div class="sub-section">
+            <div class="sub-section-header">
+                <h4>Install FlyData Client</h4>
+            </div>
+            <p>The specific install command for the FlyData client is available in your FlyData Dashboard. It should look something like this:</p>
+            <pre class="terminal"><code>curl -L https://secure.flydata.co/i/your-unique-identity | bash</code></pre>
+            <p>You will need the exact command for your system. So copy the install command from your Dashboard and execute it on your Linux server.</p>
+        </div>
+
+    <!--STEP 5-->
+        <div class="sub-section">
+            <div class="sub-section-header">
+            <h4>Generate Redshift table definition script and run on Redshift</h4>
+            </div>
+        <p>To start the FlyData client synchronizing, you will need to generate a table definition script that will be run on Amazon Redshift. You can do this by entering the following from the command-line on server:</p>
+        <pre class="terminal"><code>$ flydata sync:generate_table_ddl &gt; create_table.sql
+$ cat create_table.sql</code></pre>
+        <p>This uses the FlyData client to provide the needed table definition script. Copy the output and run it from FlyData's Amazon Redshift Access Console.</a></p>
+        </div>
+        <div class="sub-section">
+            <div class="sub-section-header">
+                <h4>Start Sync</h4>
+            </div>
+      <p>The installation and configuration is finished. You need only to start the FlyData client, Sync on your server. This client will extract data from the MySQL binlog on your server, and send it to Amazon Redshift for storing and processing.</p>
+      <p>To start the FlyData client, enter the following on your server:</p>
+        <pre class="terminal"><code>$ flydata sync</code></pre>
+      <p>At this point, whatever tables you've created on Amazon Redshift's cluster should be populated and kept in sync. If you want to be sure, run some <code>SELECT</code> statements on some of the tables on both systems and compare the results. Add or change data on your server and see if it updates on Amazon Redshift. It may take as much as five minutes to synchronize, but it should work just fine.</p>
+    </div>
+     
+        
+    </div> 
+    </div>
+    <!-- /container -->
+    <footer>
+        <p>Copyright &copy; 2014 FlyData. All Rights Reserved.</p>
+    </footer>
+
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap-lightbox.js"></script>
+    <script src="js/bootstrap-lightbox.min.js"></script>
+  </body>
+</html>
